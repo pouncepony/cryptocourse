@@ -37,6 +37,7 @@ a, a:hover {
     color: #e66;
     text-decoration: underline;
 }
-.ConductTransaction {
+
+.ConductTransaction, .TransactionPool {
     margin: 10%;
 }
