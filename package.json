@@ -20,11 +20,14 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.5",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
     "cross-env": "^5.2.0",
+    "i": "^0.3.7",
     "jest": "^23.6.0",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "npm": "^8.3.0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
