@@ -9,7 +9,7 @@ const TransactionPool = require('./wallet/transaction-pool');
 const Wallet = require('./wallet');
 const TransactionMiner = require('./app/transaction-miner');
 
-const isDevelopment = process.env.ENC === 'development';
+const isDevelopment = process.env.ENV === 'development';
 
 const DEFAULT_PORT = 3000;
 const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`
@@ -83,6 +83,20 @@ app.get('/api/wallet-info', (req, res) => {
     const address = wallet.publicKey
     res.json({address, balance: Wallet.calculateBalance({chain: blockchain.chain, address})
     });
+});
+
+app.get('/api/known-addresses', (req, res) => {
+    const addressMap = {};
+
+    for (let block of blockchain.chain) {
+        for (let transaction of block.data) {
+            const recipient = Object.keys(transaction.outputMap)
+
+            recipient.forEach(recipient => addressMap[recipient] = recipient)
+        }
+    }
+
+    res.json(Object.keys(addressMap));
 });
 
 app.get('*', (req, res) => {
